@@ -14,15 +14,25 @@ public class App {
 
         String[] rows;
 
-        ArrayList<Node> orders = new ArrayList<Node>();
+        ArrayList<Order> orders = new ArrayList<Order>();
+
+        reader.readNext();
 
         while(( rows = reader.readNext()) != null){
-            orders.add(new Node(rows[0]));
+            orders.add(
+                new Order(rows[0],
+                Integer.parseInt(rows[1]),
+                rows[2],
+                rows[3],
+                rows[4],
+                rows[5],
+                rows[6])
+            );
             System.out.println(rows[0]);
         }
 
         // System.out.println(rows[0]);
-        // System.out.println(rows[1]);
+        // System.out.println();
         // System.out.println(rows[2]);
         // System.out.println(rows[3]);
         // System.out.println(rows[4]);
