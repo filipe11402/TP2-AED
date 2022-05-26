@@ -1,0 +1,6 @@
+order_id,order_value,order_date,store,day_part,items,coupon
+30214,36,09/02/2021,LA-1,morning,"sku24,sku21",none
+30215,92,10/02/2021,NY-2,morning,"sku10,sku21",express15
+30216,35,10/02/2021,SF-1,evening,sku10,express10
+30217,151,11/02/2021,NY-2,afternoon,"sku21,sku25,sku75",none
+30218,139,11/02/2021,NY-2,afternoon,sku21,none
