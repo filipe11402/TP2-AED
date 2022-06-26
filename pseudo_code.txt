@@ -1,0 +1,29 @@
+recommendProducts(produtos){
+    for(edge in _edges){
+        for(product in products){
+            if(edge.from contains product )
+            {
+                matchedEdges insert edge
+            }
+        }
+    }
+
+    for(edge in matchedEdges){
+        splittedProducts = edge contains "," ? edge.from.split(",") as List : edge.from as List
+
+        for(product in splittedProducts){
+            if(products contains product){
+                continue;
+            }
+
+            if(totalOccurences containsKey product){
+                totalOccurences insert (product, totalOccurences.get(product) + 1)
+                continue;
+            }
+
+            totalOccurences insert (product, 1)
+        }
+
+        returns totalOccurences
+    }
+}

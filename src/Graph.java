@@ -8,8 +8,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
-import javax.swing.text.html.parser.Entity;
-
 public class Graph {
     private HashSet<Edge> _edges;
 
@@ -105,7 +103,6 @@ public class Graph {
         ArrayList<String> foundEdges = new ArrayList<String>();
 
         for(Entry<String, List<Edge>> edge: groupedByEdge.entrySet()){
-            
             Integer matchCounter = 0;
 
             for(String filter: filters){
