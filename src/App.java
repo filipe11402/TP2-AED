@@ -2,6 +2,9 @@ import java.io.FileReader;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Hashtable;
 
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
@@ -10,33 +13,41 @@ public class App {
     public static void main(String[] args) throws Exception {
         Path systemPath = FileSystems.getDefault().getPath("").toAbsolutePath();
 
-        CSVReader reader = new CSVReaderBuilder(new FileReader(systemPath + "\\" + "data.csv")).build();
+        CSVReader reader = new CSVReaderBuilder(
+            new FileReader(systemPath + "\\" + "data.csv")
+            ).build();
 
         String[] rows;
 
-        ArrayList<Order> orders = new ArrayList<Order>();
+        String[] columnNames = reader.readNext();
 
-        reader.readNext();
+        Graph graph = new Graph();
 
-        while(( rows = reader.readNext()) != null){
-            orders.add(
-                new Order(rows[0],
-                Integer.parseInt(rows[1]),
-                rows[2],
-                rows[3],
-                rows[4],
-                rows[5],
-                rows[6])
-            );
-            System.out.println(rows[0]);
+        while((rows = reader.readNext()) != null){
+            Integer edgeCounter = 1;
+
+            while(edgeCounter < 7){
+                Node node1 = new Node(rows[0]);
+                Node node2 = new Node(rows[edgeCounter]);
+
+                Edge edge = new Edge(
+                    node1,
+                    node2,
+                    columnNames[edgeCounter]
+                );
+
+                graph.addEdge(edge);
+
+                edgeCounter += 1;
+            }
         }
 
-        // System.out.println(rows[0]);
-        // System.out.println();
-        // System.out.println(rows[2]);
-        // System.out.println(rows[3]);
-        // System.out.println(rows[4]);
-        // System.out.println(rows[5]);
-        // System.out.println(rows[6]);
+        ArrayList<String> test = new ArrayList<String>();
+        test.add("SF-1");
+        test.add("evening");
+
+        Integer filtered = graph.count(test);
+
+        System.out.println(filtered);
     }
 }
